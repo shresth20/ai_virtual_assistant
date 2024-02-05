@@ -108,3 +108,7 @@ Text-to-Speech and Speech Recognition:
 I explored both sides of audio interaction.
 With text-to-speech (TTS) using pyttsx3, I allowed the assistant to convert text into speech.
 With speech recognition, I incorporated the ability for the assistant to understand and act upon voice commands from users.
+
+
+## CS50P certificate...
+![CS50P](https://github.com/shresth20/python_problems/assets/138902550/db09c90b-e430-40e2-8d40-d09be927f161)
