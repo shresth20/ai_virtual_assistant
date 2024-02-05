@@ -1,0 +1,59 @@
+"""    Using these library or packages I create my program and own packages !!     """
+
+selenium: Selenium is a powerful tool for automating web interactions.
+
+PyAutoGUI: PyAutoGUI is a library for automating GUI tasks on the desktop.
+
+Webbrowser: The webbrowser library simplifies web-related tasks, such as opening and controlling web browsers.
+
+OpenAI(GPT): OpenAI GPT-3 To provide large amount of information.
+
+DateTime: The datetime library is essential for working with dates and times in Python.
+
+APIs: APIs allowed me to fetch real-time information, such as music data from Spotify.
+
+pyttsx3: pyttsx3 is a text-to-speech conversion library.
+
+PIL (Python Imaging Library): PIL provides extensive image processing capabilities.
+
+Text-to-Speech and Speech Recognition: TTS using pyttsx3, I allowed the assistant to convert text into speech.
+
+
+# In my brower package:
+import webbrowser as web
+
+# In my open_ai package:
+import openai
+import time
+
+# In my spotify_web package:
+from time import sleep
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import pyautogui
+import webbrowser
+
+# In my tools package:
+import pyttsx3
+import datetime
+from PIL import ImageGrab
+import time
+
+# In my main project file:
+import os
+import webbrowser
+import pyautogui
+from time import sleep
+import speech_recognition as sr
+import re
+  # My packages:
+from open_ai import openai_ask
+from tools import say, wish, save_result, take_ss
+from browser import play_yt, google_ask, website
+from spotify_web import direct_play, login, search_play, lab_sch_play, like_plist, current_play, like_song, forward_song, backward_song, home
+
+
