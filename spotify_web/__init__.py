@@ -12,7 +12,7 @@ import webbrowser
 
 # module and element to control chrome browser
 options = webdriver.ChromeOptions()
-options.headless = False  # false for run
+options.headless = False  # false for run program
 options.add_experimental_option("detach", True)
 options.add_experimental_option("useAutomationExtension", False)
 options.add_experimental_option("excludeSwitches",["enable-automation"])
@@ -22,17 +22,17 @@ service = Service()
 driver = webdriver.Chrome(options=options, service=service)
 
 
-
 """     FUNCTIONS  TO  CONTROLE SPOTIFY WEB        """
 
 
 # Info for spotify web to login
 def spotify_id_pass():
     try:
-       Email, Password = "USERNAME", "PASSWORD"  # Email/ID, Password
+       Email, Password = " ", " "  # Email/ID, Password
        return Email, Password
     except Exception:
-        print("Please enter your spotify id password in  ' project/spotify_web/__init__.py '  to auto login in  ")
+        print("Please enter your spotify id password in  'spotify_web/__init__.py '  to auto login in spotify_id_pass() function")
+        return "Enter your Id Password in spotify_web/_init_.py in spotify_id_pass() function"
 
 
 #direct search play song/playlist
@@ -40,11 +40,10 @@ def direct_play(song: str) -> None:
         try:
             webbrowser.open(f"http://open.spotify.com/search/{song}")
             sleep(2)
-            pyautogui.moveTo(x=583, y=420)  # drop pointer
-            sleep(5)
+            pyautogui.moveTo(x=700, y=420)  # drop pointer
+            sleep(7)
             pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen("playbutton.png", confidence=0.7)))
         except Exception as e:
-
             print("Make sure 'Browser window is Full Opened'", e)
 
 # auto login fun..
@@ -56,8 +55,9 @@ def login():
     try:
         driver.get(url) 
         driver.maximize_window()
-    except Exception:
+    except Exception as e:
         pass
+
     # WITH XPATH
 
     # login page
@@ -87,23 +87,25 @@ def login():
 # current song play button fun..
 def current_play():
     try:
-        WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/footer/div/div[2]/div/div[1]/button'))).click()
-    except Exception:
+        WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[2]/footer[1]/div[1]/div[2]/div[1]/div[1]/button[1]'))).click()
+    except Exception as e:
+        print(e)
         pass
 
 
 # current song like fun..
 def like_song():
     try:
-        driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/footer/div/div[1]/div/button').click()
-    except Exception:
+        driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[2]/footer[1]/div[1]/div[1]/div[1]/button[1]').click()
+    except Exception as e:
+        print(e)
         pass
 
 
 # forward  song fun..
 def forward_song():
     try:
-        driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/footer/div/div[2]/div/div[1]/div[2]/button[1]').click()
+        driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[2]/footer[1]/div[1]/div[2]/div[1]/div[1]/div[2]/button[1]').click()
     except Exception:
         pass
 
@@ -111,8 +113,9 @@ def forward_song():
 # backward song fun..
 def backward_song():
     try:
-        driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/footer/div/div[2]/div/div[1]/div[1]/button[2]').click()
-        driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/footer/div/div[2]/div/div[1]/div[1]/button[2]').click()
+        # Perform double click
+        with ActionChains(driver) as actions:
+            actions.double_click(driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[2]/footer[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[2]')).perform()
     except Exception:
         pass
 
@@ -121,14 +124,20 @@ def backward_song():
 def search_play(text):
     try:
         driver.maximize_window()  # want full window to play properly
-        driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[2]/nav/div[1]/ul/li[2]/a').click()    # search button
+        driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[1]/ul[1]/li[2]').click() # search button
         sleep(1)
-        driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[1]/header/div[3]/div/div/form/input').send_keys(text)   # search box
-        pyautogui.moveTo(x=583, y=420)  # drop pointer
+        driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/header[1]/div[3]/div[1]/div[1]/form[1]/input[1]').send_keys(text)   # search box
+        pyautogui.moveTo(x=583, y=470)  # drop pointer
         sleep(2)
         # click popup play button
-        driver.find_element(By.XPATH, '//*[@id="searchPage"]/div/div/section[1]/div[2]/div/div/div/div[3]/div/button').click()
-    except Exception :
+        try:
+            driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[2]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/span[1]').click()
+        except Exception :
+            pyautogui.moveTo(x=580, y=471)
+            driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[2]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/span[1]').click()
+
+    except Exception as e:
+        print(e)
         pass
 
 
@@ -137,24 +146,33 @@ def lab_sch_play(text):
     while True :
         try:
             # search input
-            driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[2]/nav/div[2]/div[1]/div[2]/div[4]/div/div/div/div[1]/div[1]').click()
-            WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main"]/div/div[2]/div[2]/nav/div[2]/div[1]/div[2]/div[4]/div/div/div/div[1]/div[1]/input'))).send_keys(text)
+            try:
+                driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[2]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]').click()
+            except Exception :
+                driver.find_element(By.XPATH," /html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[2]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]/*[name()='svg'][1] ").click() # cut buttoon then input
+
+            try:
+                driver.find_element(By.XPATH," /html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[2]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]/*[name()='svg'][1] ").click() # cut buttoon then input
+            except Exception:
+                pass
+            # input text
+            WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[2]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]'))).send_keys(text)
             sleep(5)
             # first row click
-            driver.find_element(By.XPATH,'//*[@id="main"]/div/div[2]/div[2]/nav/div[2]/div[1]/div[2]/div[4]/div/div/div/div[2]/ul/div/div[2]/li[1]').click()
+            driver.find_element(By.XPATH,'/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[2]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/div[2]/ul[1]/div[1]/div[2]/li[1]/div[1]/div[1]').click()
             sleep(4)
             # play button click
-            driver.find_element(By.XPATH,'//*[@id="main"]/div/div[2]/div[4]/div[1]/div[2]/div[2]/div/div/div[2]/main/div[1]/section/div[2]/div[2]/div[4]/div/div/div/div/div/button').click()
+            driver.find_element(By.XPATH,'/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[1]/section[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]').click()
             break
         except Exception as e:
-            driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[2]/nav/div[2]/div[1]/div[1]/header/div/div/button').click()  # click lab icon
-
+            driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[2]/div[1]/div[1]/header[1]/div[1]/div[1]/button[1]').click()  # click lab icon
+        except Exception:
+            pass
 
 # like playlist in labirary fun..
 def like_plist():
     try:
-        driver.find_element(By.XPATH,
-                            '//*[@id="main"]/div/div[2]/div[4]/div[1]/div[2]/div[2]/div/div/div[2]/main/div[1]/section/div[2]/div[2]/div[4]/div/div/div/div/button[1]').click()
+        driver.find_element(By.XPATH,"/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[1]/section[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]/*[name()='svg'][1]/*[name()='path'][1] ").click()
     except Exception as e:
         print(e)
         pass
@@ -163,7 +181,7 @@ def like_plist():
 # home or back fun.
 def home():
     try:
-        driver.find_element(By.XPATH, '//*[@id="main"]/div/div[2]/div[2]/nav/div[1]/ul/li[1]/a').click()
+        driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[1]/ul[1]/li[1]').click()
     except Exception:
         pass
 
@@ -171,31 +189,45 @@ def home():
 
 # test functions...
 if __name__ == "__main__":
-   # direct_play("mahakal ki gulami")
-    login()
-   #  sleep(2)
-   #  search_play("jagarnath astakam")
-
-
-    # sleep(30)
-    # lab_sch_play("eng.song")
+   direct_play("mahakal ki gulami")
+    # login()
+    # #
+    # sleep(2)
+    # search_play("jagarnath astakam")
     #
-    # sleep(10)
-    # home()
+    # sleep(12)
+    # search_play("panjabi")
+     #
+    # sleep(15)
+    # lab_sch_play("this is kaka")
+    #
+    # sleep(15)
+    # lab_sch_play("this is serhat")
+    #
     # sleep(30)
+    # home()
+    #
+    # sleep(5)
     # current_play()  # for stop
     #
     # sleep(30)
     # current_play() # for play
     #
-    # sleep(30)
+    # sleep(5)
     # forward_song()
     #
-    # sleep(30)
+    # sleep(10)
     # backward_song()
     #
-    # sleep(30)
+    # sleep(10)
+    # backward_song()
+    #
+    # sleep(5)
     # like_song()
+   #
+    # sleep(5)
+    # like_plist()
+
 
 
 

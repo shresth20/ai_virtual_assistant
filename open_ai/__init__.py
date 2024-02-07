@@ -12,6 +12,7 @@ def openai_key():
         return key
     except Exception:
         print("Please enter your openai api key in   ' project/open_ai/__init__.py '  file to use openAI service")
+        return ("Please enter your openai api key in   ' project/open_ai/__init__.py '  file to use openAI service")
 
 
 # function to get response to open AI 'ChatGPT'
