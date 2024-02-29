@@ -125,20 +125,25 @@ def search_play(text):
     try:
         driver.maximize_window()  # want full window to play properly
         driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[1]/ul[1]/li[2]').click() # search button
+        try:
+                driver.find_element(By.XPATH, "/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/header[1]/div[3]/div[1]/div[1]/div[1]/button[1]/*[name()='svg'][1]/*[name()='path'][1]").click() # clear searched
+        except Exception:
+            pass
         sleep(1)
         driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/header[1]/div[3]/div[1]/div[1]/form[1]/input[1]').send_keys(text)   # search box
         pyautogui.moveTo(x=583, y=470)  # drop pointer
-        sleep(2)
+        sleep(3)
         # click popup play button
         try:
-            driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[2]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/span[1]').click()
+            driver.find_element(By.XPATH, "/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[2]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/span[1]/span[1]/*[name()='svg'][1]/*[name()='path'][1]").click()
         except Exception :
             pyautogui.moveTo(x=580, y=471)
-            driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[2]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/span[1]').click()
+            driver.find_element(By.XPATH, "/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[2]/div[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/span[1]/span[1]/*[name()='svg'][1]/*[name()='path'][1]").click()
 
     except Exception as e:
         print(e)
         pass
+
 
 
 # enter text in search box fun..
