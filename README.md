@@ -39,6 +39,10 @@ Gemini AI:
 Gemini, the best way to directly access Google AI. I'm trained on large amounts of publicly available data and I can communicate and generate human-like text in response to a wide range of questions.
 
 
+Ollama AI:
+
+Ollama is an open-source framework that allows you to run large language models (LLMs) on your own computer.  This means you can interact with these powerful AI models without needing to rely on cloud services or specific hardware.
+
 Spotify Web Automation :
 
 Control your music playback on Spotify without manual intervention.
