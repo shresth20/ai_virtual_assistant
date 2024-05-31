@@ -28,11 +28,20 @@ Customizable and expandable functionalities.
 It's AI-based virtual assistant built using Python, featuring OpenAI 'ChatGPT' as its core intelligence. And for music lovers I also add spotify automation who, make's your music experience effortless.This virtual assistant goes beyond answering questions; it combines various functionalities to make your daily tasks easier and more efficient, Now we will explore its key features and capabilities.
 
 #### What Key features it have, How it be executed :
- OpenAI 'chatGPT' Integration :
+OpenAI 'chatGPT' Integration :
 
- The heart of our virtual assistant is ChatGPT, a state-of-the-art language model by OpenAI.
+The heart of our virtual assistant is ChatGPT, a state-of-the-art language model by OpenAI.
 ChatGPT allows natural language interactions, answering questions, providing information, and engaging in conversations with users.
 
+
+Gemini AI:
+
+Gemini, the best way to directly access Google AI. I'm trained on large amounts of publicly available data and I can communicate and generate human-like text in response to a wide range of questions.
+
+
+Ollama AI:
+
+Ollama is an open-source framework that allows you to run large language models (LLMs) on your own computer.  This means you can interact with these powerful AI models without needing to rely on cloud services or specific hardware.
 
 Spotify Web Automation :
 
