@@ -1,18 +1,19 @@
 # open AI engin code file
 import openai
 import time
-
+import os
+from dotenv import load_dotenv
+# Load environment variables from the .env file
+load_dotenv()
 
 """   RETURN  RESULT  FROM OPEN AI   """
 
 # Enter open AI  key
 def openai_key():
     try:
-        key = 'OPEN AI API KEY'  # Enter api key
-        return key
+        return os.getenv('OPEN_AI_API_KEY')
     except Exception:
-        print("Please enter your openai api key in   ' project/open_ai/__init__.py '  file to use openAI service")
-        return ("Please enter your openai api key in   ' project/open_ai/__init__.py '  file to use openAI service")
+        print("Please fill your OPEN_AI_API_KEY in  .env file")
 
 
 # function to get response to open AI 'ChatGPT'
@@ -21,7 +22,7 @@ def openai_ask(query):
     try:
         if query:
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model="gpt-3.5-turbo-0613",
                 messages=[{"role": "user", "content": query},],
                 temperature=1,
                 max_tokens=256,

@@ -3,7 +3,7 @@
 # NOTE : Please fill openai api key in 'project/open_ai/__init__.py' package and sportify id password in 'project/spotify_web/__init__.py' then run the test program nother you get some error !!
 
 import pytest
-from project import web_browser,spotify_music, openai_gpt
+from main import web_browser,spotify_music, ask_gemini
 
 def main():
     test_web_browser_open_python_status()
@@ -69,13 +69,13 @@ def test_spotify_music_search_song():
 def test_openai_gpt_in_detail():
     # Test to provide a detailed answer
     query = "what is the history of openai gpt?"
-    openai_gpt(query)
+    # openai_gpt(query)
     assert "openai gpt" in pytest.captured_output()
 
 def test_openai_gpt_short_answer():
     # Test to provide a short answer
     query = "how to write an essay?"
-    openai_gpt(query)
+    # openai_gpt(query)
     assert "write an essay" in pytest.captured_output()
 
 

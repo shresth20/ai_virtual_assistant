@@ -1,3 +1,6 @@
+# cmd for create req.. file
+#  python -m pipreqs.pipreqs --encoding=utf8 --force ./
+
 openai==0.28.0
 Pillow==10.0.0
 Pillow==10.2.0

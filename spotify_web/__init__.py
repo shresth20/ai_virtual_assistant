@@ -8,6 +8,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pyautogui
 import webbrowser
+import os
+from dotenv import load_dotenv
+# Load environment variables from the .env file
+load_dotenv()
 
 
 # module and element to control chrome browser
@@ -24,15 +28,14 @@ driver = webdriver.Chrome(options=options, service=service)
 
 """     FUNCTIONS  TO  CONTROLE SPOTIFY WEB        """
 
-
 # Info for spotify web to login
 def spotify_id_pass():
     try:
-       Email, Password = " ", " "  # Email/ID, Password
+       Email, Password = os.getenv('SPOTIFY_EMAIL'), os.getenv('SPOTIFY_PASSWORD')  # Email/ID, Password
        return Email, Password
     except Exception:
-        print("Please enter your spotify id password in  'spotify_web/__init__.py '  to auto login in spotify_id_pass() function")
-        return "Enter your Id Password in spotify_web/_init_.py in spotify_id_pass() function"
+        print("Please enter your SPOTIFY_EMAIL and SPOTIFY_PASSWORD in  .env file")
+        return "Please enter your SPOTIFY_EMAIL and SPOTIFY_PASSWORD in  .env file"
 
 
 #direct search play song/playlist
@@ -145,10 +148,8 @@ def search_play(text):
         pass
 
 
-
 # enter text in search box fun..
 def lab_sch_play(text):
-    while True :
         try:
             # search input
             try:
@@ -168,7 +169,6 @@ def lab_sch_play(text):
             sleep(4)
             # play button click
             driver.find_element(By.XPATH,'/html[1]/body[1]/div[4]/div[1]/div[2]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/main[1]/div[1]/section[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]').click()
-            break
         except Exception as e:
             driver.find_element(By.XPATH, '/html[1]/body[1]/div[4]/div[1]/div[2]/div[1]/nav[1]/div[2]/div[1]/div[1]/header[1]/div[1]/div[1]/button[1]').click()  # click lab icon
         except Exception:
@@ -194,15 +194,17 @@ def home():
 
 # test functions...
 if __name__ == "__main__":
-   direct_play("mahakal ki gulami")
-    # login()
+   # direct_play("mahakal ki gulami")
+    login()
     # #
-    # sleep(2)
-    # search_play("jagarnath astakam")
+    sleep(2)
+    search_play("jagarnath astakam")
     #
-    # sleep(12)
-    # search_play("panjabi")
+    sleep(5)
+    search_play("panjabi")
      #
+    sleep(2)
+    search_play("jagarnath astakam")
     # sleep(15)
     # lab_sch_play("this is kaka")
     #
